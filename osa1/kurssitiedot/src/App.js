@@ -48,7 +48,6 @@ const App = () => {
     ]
   }
 
-
   return (
     <div>
       <Header coursename={course.name} />
