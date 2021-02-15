@@ -65,6 +65,14 @@ const App = () => {
           .then(returnedPerson => {
             setPersons(persons.concat(returnedPerson))
           })
+          .catch(error => {
+            setSuccess(false)
+            setMessage(error.response.data.error)
+            setTimeout(() => {
+              setMessage(null)
+              setSuccess(null)
+            }, 5000)
+          })
           setSuccess(true)
           setMessage(`Added ${personObject.name}`)
           setTimeout(() => {
@@ -119,9 +127,7 @@ const App = () => {
         })
         .catch(error => {
           setSuccess(false)
-          setMessage(
-            `Information of '${personWithNumberToChange.name}' has already been removed from server`
-          )
+          setMessage(error.response.data.error)
           setTimeout(() => {
             setMessage(null)
             setSuccess(null)
